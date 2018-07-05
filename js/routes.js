@@ -1,5 +1,5 @@
 import emailApp  from '../pages/email-app.js';
-import miserKeep  from '../pages/mister-keep-cmp.js';
+import miserKeep  from '../pages/keep-app.js';
 import home from '../pages/home.js';
 
 
@@ -7,5 +7,5 @@ import home from '../pages/home.js';
 export default [
     { path: '/', component: home },
     { path: '/email-app', component: emailApp },
-    { path: '/mister-keep', component: miserKeep },
+    { path: '/keep-app', component: miserKeep },
 ]
