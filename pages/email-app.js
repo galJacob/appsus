@@ -3,7 +3,7 @@ import emailList from '../cmps/mister-Email/email-list.js';
 import emailDetails from '../cmps/mister-Email/email-details.js';
 // import emailDetails
 export default {
-    template: `
+    template: ` 
         <section class="mister-email" >
       <email-list :emails="emails" @emailSelected="updateSelectedEmail" ></email-list >
       <email-details v-if="selectedemail" :selectedemail="selectedemail"></email-details>
@@ -17,14 +17,15 @@ export default {
     created() {
         emailsService.query().then(emails => {
             this.emails = emails;
-            this.selectedemail = emails[0]; 
+            this.selectedemail = emails[0];
             this.$emit('createdEmails');
         })
     },
     methods: {
-        updateSelectedEmail(selectedemail) {
-            this.selectedemail = selectedemail;
-            console.log(this.selectedemail);
+        updateSelectedEmail(id) {
+            emailsService.getEmailById(id).then(selectedemail => {
+                this.selectedemail = selectedemail;
+            })
         }
     },
     components: {

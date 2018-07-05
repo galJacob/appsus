@@ -14,6 +14,19 @@ body{
     background-color: blue;
     height: 100vh;
 }
+.gray{
+    background-color: #333;
+}
+.email-preview{
+cursor: pointer;
+}
+.email-list *:not(input){
+    padding-left: 2%;
+}
+.email-list input{
+    width: 100%;
+    /* margin: 0 10%; */
+}
 
 .email-details{
     /* background-color: aqua; */

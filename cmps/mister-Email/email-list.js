@@ -1,11 +1,13 @@
+import emailPreview from './email-preview.js';
 
 export default {
     props: ['emails'],
     template: `
-        <section class="email-list">
-      <ul>
-      <li @click="onEmailSelected(email)" v-for="email in emails"> {{email.subject}}</li>
-      </ul>
+    <section class="email-list">
+    <input placeholder="search for an E-mail" />
+      <div @emailDeleted="passItToEmailApp" @click="onEmailSelected(email.id)" v-for="email in emails">
+      <email-preview :email="email" ></email-preview>
+      </div>
         </section>`,
     data() {
         return {
@@ -15,9 +17,13 @@ export default {
     created() {
     },
     methods: {
-        onEmailSelected(email) {
-            this.$emit('emailSelected',email)
+        onEmailSelected(id) {
+            console.log(id);   
+            this.$emit('emailSelected', id)
             // console.log(email);
         }
     },
+    components: {
+        emailPreview,
+    }
 }
