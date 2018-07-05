@@ -4,7 +4,7 @@ export default {
     props: ['data'],
     template: `
         <section>
-            <ul>
+            <ul class = 'clean-list'>
                 <li class="card">
                         <img :src="imgNotes.imgUrl" alt="note-image" style="width:100%">
                         <div class="card-container">

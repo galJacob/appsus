@@ -6,10 +6,11 @@ import textNotes from '../cmps/mister-keep/text-notee-cmp.js'
 
 export default {
     template: `
-    <section class="mister-keep">
+    <section class="mister-keep flex">
         <h1>NOTES APP</h1>
-       
-            <component v-for="(note, idx) in notes" :is="note.noteType" :key="idx" :data="note.data"></component>                   
+            <div class = "notes-list flex">
+                <component v-for="(note, idx) in notes" :is="note.noteType" :key="idx" :data="note.data"></component>                   
+            </div>
     </section>`,
 
         

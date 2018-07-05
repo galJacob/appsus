@@ -4,12 +4,12 @@ export default {
     props:['data'],
     template: `
         <section>
-            <ul>
+            <ul class="clean-list">
                 <li>
                     <div class="card">
                         <div class="card-container">
                             <h4><b>{{todoNotes.title}}</b></h4> 
-                            <li v-for = '(todo,idx) in todoNotes.todos'>{{todo}}</li> 
+                            <li class= 'clean-list' v-for = '(todo,idx) in todoNotes.todos'>{{todo}} <hr></hz></hl></hz></li> 
                         </div>
                     </div>
                 </li>

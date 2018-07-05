@@ -4,7 +4,7 @@ export default {
     props:['data'],
     template: `
         <section>
-            <ul>
+            <ul class = "clean-list">
                 <li>
                     <div class="card">
                         <div class="card-container">

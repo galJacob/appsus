@@ -5,6 +5,18 @@
 body{
     margin: 0;
 }
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.clean-list {
+    list-style: none;
+}
+
 .mister-email{
     display: flex;
     /* justify-content: space-between; */
@@ -89,7 +101,6 @@ h2 span{
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 40%;
 }
 
 .card:hover {
@@ -98,5 +109,10 @@ h2 span{
 
 .card-container {
     padding: 2px 16px;
+}
+
+/*keep-app*/
+.mister-keep h1 {
+    text-align: center;
 }
 
