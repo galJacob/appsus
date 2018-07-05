@@ -4,6 +4,7 @@ import home from '../pages/home.js';
 
 
 
+
 export default [
     { path: '/', component: home },
     { path: '/email-app', component: emailApp },

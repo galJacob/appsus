@@ -1,11 +1,13 @@
+import emailsService from '../../services/emailApp-service/emails.js';
+
 export default {
     props: ['email'],
     template: `
-        <section class="email-details">
-       <h1> {{selectedemail.subject}}</h1>
-      <h2>  <span>sent at:</span> {{convertTimeStampToDate }} </h2>
-       <hr>
-      <p> {{selectedemail.body}}</p>
+        <section :class="{gray:email.isRead}" class="email-preview" v-if="email">
+       <h3> {{email.subject}}</h3>
+      <p> msadasdasdsadsadsa</p>
+      <button class="deleteBtn">x</button>
+      {{isRead}}
         </section>`,
     data() {
         return {
@@ -14,8 +16,11 @@ export default {
     created() {
     },
     computed: {
-        convertTimeStampToDate() {
-            return moment.unix(this.selectedemail.sentAt).format('dddd, MMMM Do, YYYY h:mm:ss A')
+        isRead() {
+            return this.email.isRead;
         }
+    },
+    methods: {
+       
     },
 }
