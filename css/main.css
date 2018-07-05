@@ -5,6 +5,43 @@
 body{
     margin: 0;
 }
+.mister-email{
+    display: flex;
+    /* justify-content: space-between; */
+}
+.email-list{
+    width: 30%;
+    background-color: blue;
+    height: 100vh;
+}
+
+.email-details{
+    /* background-color: aqua; */
+    width: 70%;
+    height: 100vh;
+}
+.email-details *:not(span){
+    padding-left: 3%;
+    font-family: monospace;
+    margin-top: 5%;
+}
+.email-details h1{
+    font-size: 2em;
+    margin:0;
+}
+.email-details h2{
+    font-size:1em;
+}
+h2 span{
+    color:lightgray;
+    padding-left: 0;
+}
+/* gal */
+
+
+
+
+/* gal */
 
 /*helpers*/
 
