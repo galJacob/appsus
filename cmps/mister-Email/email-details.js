@@ -14,6 +14,10 @@ export default {
         }
     },
     created() {
+        // BookService.getBookById(this.$route.params.bookId)
+        //  .then(selectedBook =>{
+        //      this.book = selectedBook;
+        //  })
     },
     computed: {
         convertTimeStampToDate() {

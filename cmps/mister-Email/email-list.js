@@ -5,8 +5,8 @@ export default {
     template: `
     <section class="email-list">
     <input placeholder="search for an E-mail" />
-      <div @emailDeleted="passItToEmailApp" @click="onEmailSelected(email.id)" v-for="email in emails">
-      <email-preview :email="email" ></email-preview>
+      <div v-for="email in emails">
+      <email-preview @click.native="onEmailSelected(email.id)" :email="email" ></email-preview>
       </div>
         </section>`,
     data() {
