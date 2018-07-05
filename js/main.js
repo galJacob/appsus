@@ -1,9 +1,10 @@
 'use strict';
 import myRoutes from './routes.js';
-import navBar from '../cmps/nav-bar-cmp.js'
-Vue.use(VueRouter);
+import navBar from '../cmps/nav-bar-cmp.js';
 
-const myRouter = new VueRouter({routes: myRoutes})
+
+Vue.use(VueRouter);
+const myRouter = new VueRouter({routes: myRoutes});
 
 
 new Vue({
