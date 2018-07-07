@@ -16,15 +16,60 @@ body{
 .clean-list {
     list-style: none;
 }
-
+.invisible-link{
+    color: black;
+    text-decoration: none;
+}
 .mister-email{
+    font-family: monospace;
+
+    border: 5px ridge #bcbcbc;
     display: flex;
-    /* justify-content: space-between; */
+    flex-wrap: wrap;
+}
+
+.email-filter{
+    /* width: 30vw; */
+}
+.modal-btn{
+    position: absolute;
+    right: 10%;
+}
+.compose-modal{
+    z-index: 1;
+    width: 50vw;
+    height: 50vh;
+    background:white;
+}
+.email-compose {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(0,0,0,0.2);
+}
+.email-status{
+    width: 100vw;
+    height: 5vh;
+    background-color: #333;
+}
+template{
+    display: flex;
+    flex-direction: column;
+}
+progress{
+    width: 100%;
 }
 .email-list{
     width: 30%;
     background-color: blue;
-    height: 100vh;
+    height: 90vh;
+}
+.email-details{
+    width: 70%;
+    height: 90vh;
 }
 .gray{
     background-color: #333;
@@ -40,14 +85,9 @@ cursor: pointer;
     /* margin: 0 10%; */
 }
 
-.email-details{
-    /* background-color: aqua; */
-    width: 70%;
-    height: 100vh;
-}
-.email-details *:not(span){
+
+.email-details *{
     padding-left: 3%;
-    font-family: monospace;
     margin-top: 5%;
 }
 .email-details h1{

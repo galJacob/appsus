@@ -1,6 +1,14 @@
 'use strict';
+var emails;
+const EMAILS_KEY = 'emails';
+import utils from '../utils.js';
 
 function query() {
+    emails = utils.loadFromStorage(EMAILS_KEY);
+    if (!emails) {
+        emails = getEmails();
+        utils.saveToStorage(EMAILS_KEY, emails);
+    }
     return Promise.resolve(emails)
 }
 function getEmailById(id) {
@@ -9,41 +17,102 @@ function getEmailById(id) {
 }
 function deleteEmailById(id) {
     let idx = emails.findIndex(email => email.id === id);
-    console.log(idx);
-    emails.splice(idx,1);
-    console.log(emails);
+    emails.splice(idx, 1);
+    utils.saveToStorage(EMAILS_KEY, emails);
 }
 
-var emails = [
-    {
-        id: 'asdsadsa',
-        subject: 'first email',
-        body: 'this is first email blabla',
-        isRead: true,
-        sentAt: 1530799984,
-    },
-    {
-        id: '2',
-        subject: 'haha',
-        body: 'laughing email',
+function countReadenEmails() {
+    let readenEmails = emails.reduce((readenEmails, email) => {
+        if (email.isRead) readenEmails++;
+        return readenEmails;
+    }, 0);
+    return Promise.resolve(readenEmails);
+}
+function getEmailsByEmailStatus(emailStatus) {
+    if (emailStatus === 'read') {
+        return emails.filter(email => email.isRead);
+    }
+    return emails.filter(email => !email.isRead);
+}
+
+function onEmailRead(email){
+    email.isRead = true;
+    utils.saveToStorage(EMAILS_KEY, emails);
+}
+
+function getEmailsByFilterTxt(text, emailsByStatus) {
+    return emailsByStatus.filter(email => email.subject.substr(0, text.length) === text);
+}
+function emptyNewEmail() {
+    return {
+        subject: '',
+        body: '',
+        sendAt: null,
         isRead: false,
-        sentAt: 123333131231,
-    }, {
-        id: '3',
-        subject: 'hello email',
-        body: 'hello world blabla',
-        isRead: true,
-        sentAt: 122123131231,
-    }, {
-        id: '4',
-        subject: 'last email',
-        body: 'lorem ipsum dolorasdad blabla',
-        isRead: false,
-        sentAt: 123123132231,
-    },
-];
+    }
+}
+
+function addNewEmail(newEmail) {
+    emails.unshift(newEmail);
+    utils.saveToStorage(EMAILS_KEY, emails);
+}
+
+function getFilteredEmails(filter) {
+    let filteredEmails;
+    switch (filter.emailStatus) {
+        case 'all':
+            filteredEmails = emails;
+            console.log(filteredEmails);
+            break;
+        case 'read':
+            filteredEmails = getEmailsByEmailStatus(filter.emailStatus);
+            console.log(filteredEmails);
+            break;
+        case 'unread':
+            filteredEmails = getEmailsByEmailStatus(filter.emailStatus);
+            console.log(filteredEmails);
+    }
+    return getEmailsByFilterTxt(filter.txt.toLowerCase(), filteredEmails);
+}
+
 export default {
     query,
     getEmailById,
     deleteEmailById,
+    countReadenEmails,
+    getFilteredEmails,
+    emptyNewEmail,
+    addNewEmail,
+    onEmailRead,
+}
+
+function getEmails() {
+    return [
+        {
+            id: utils.makeid(),
+            subject: 'first email',
+            body: 'this is first email blabla',
+            isRead: true,
+            sentAt: 1530799984,
+        },
+        {
+            id: utils.makeid(),
+            subject: 'haha',
+            body: 'laughing email',
+            isRead: false,
+            sentAt: 123333131231,
+        }, {
+            id: utils.makeid(),
+            subject: 'hello email',
+            body: 'hello world blabla',
+            isRead: true,
+            sentAt: 122123131231,
+        }, {
+            id: utils.makeid(),
+            subject: 'last email',
+            body: 'lorem ipsum dolorasdad blabla',
+            isRead: false,
+            sentAt: 123123132231,
+        },
+    ];
 }

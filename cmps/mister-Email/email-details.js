@@ -1,4 +1,5 @@
 import emailsService from '../../services/emailApp-service/emails.js';
+import busService from '../../services/event-bus.service.js';
 export default {
     props: ['selectedemail'],
     template: `
@@ -14,21 +15,16 @@ export default {
         }
     },
     created() {
-        // BookService.getBookById(this.$route.params.bookId)
-        //  .then(selectedBook =>{
-        //      this.book = selectedBook;
-        //  })
     },
     computed: {
         convertTimeStampToDate() {
-            return moment.unix(this.selectedemail.sentAt).format('dddd, MMMM Do, YYYY h:mm:ss A')
+            return moment(this.selectedemail.sentAt).format('LLL');
         }
     },
     methods: {
         onDeleteEmail(id) {
             emailsService.deleteEmailById(id);
-            this.$emit('emailDeleted');
-            // console.log(id);
+            busService.$emit('actionOnAnEmail', id);
         }
     },
 }
