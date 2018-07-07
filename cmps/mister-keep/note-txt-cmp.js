@@ -1,12 +1,15 @@
 
 
 export default {
-    props:['data'],
+    props: ['data'],
     template: `
         <section>
-            <ul class = "clean-list">
-                <li>
-                    <div class="card">
+        <ul class = "clean-list">
+        <li>
+        <div class="card" @click = "$emit('openUpdateModal',  textNote)"  v-bind:style="{ backgroundColor: color}">
+        <button @click.stop = "$emit('deleteNote', textNote.id)">x</button>
+        <input class= 'color-btn' type="color" v-model = 'color'  name="favcolor" value="#ffffff" @click.stop="$emit('changeColor', this.value)">
+        <img :src ="'img/notes-img/s-'+data.pinColor+'.png'" @click.stop = "pinNote">
                         <div class="card-container">
                             <h4><b>{{textNote.title}}</b></h4> 
                             <p>{{textNote.text}}</p> 
@@ -18,13 +21,19 @@ export default {
     
     `,
 
-    data(){
+    data() {
         return {
-            textNote:this.data,
+            textNote: this.data,
+            color:'#673AB7',
         }
     },
-    created(){
-        console.log(this.note);
+    created() {
         
+    },
+
+    methods: {
+        pinNote() {
+            this.$emit("notePined", this.textNote.id);
+        }
     }
 }
