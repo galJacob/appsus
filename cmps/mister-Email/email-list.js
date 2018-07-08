@@ -19,7 +19,6 @@ export default {
         </section>`,
     data() {
         return {
-            // readEmailsCount: null,
         }
     },
     created() {
