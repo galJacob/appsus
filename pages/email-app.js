@@ -8,12 +8,15 @@ import emailCompose from '../cmps/mister-Email/email-compose.js';
 export default {
     template: ` 
     <section  class="mister-email">
+    <transition name="bounce">
         <email-compose @emailSent="onAddNewEmail" @closeCompose="composeShown=!composeShown"  v-if="composeShown"></email-compose>
-    <button @click="composeShown=!composeShown" class="modal-btn">send a new E-mail</button>
-    <!-- <keep-alive> -->
-    <!-- </keep-alive> -->
-      <email-list  :readEmailsCount="readEmailsCount" :emails="emails" :filteredEmails="setFilteredEmails" @emailHasRead="updateReadEmails" 
+        </transition>
+        
+    <i @click="composeShown=!composeShown" class="fa fa-paper-plane modal-btn" ></i>
+      <email-list  :readEmailsCount="readEmailsCount" :emails="emails" 
+      :filteredEmails="setFilteredEmails" @emailHasRead="updateReadEmails" 
       @emailSelected="updateSelectedEmail"></email-list>
+
       <email-details v-if="selectedemail" :selectedemail="selectedemail"></email-details>
       <email-status :readEmailsCount="readEmailsCount" :emails="emails" :readEmails="displayReadEmails"></email-status>
         </section>`,
@@ -31,9 +34,9 @@ export default {
     created() {
         emailsService.query().then(emails => {
             this.emails = emails;
-            console.log(this.emails);
-            
             this.filteredEmails = emails;
+            console.log( 'emails: ',this.emails);
+            console.log('filtered:',this.filteredEmails);
             this.selectedemail = emails[0];
             // this.$emit('createdEmails');
             emailsService.countReadenEmails()
