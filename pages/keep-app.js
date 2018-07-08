@@ -8,7 +8,8 @@ import addNote from '../cmps/mister-keep/add-note-cmp.js'
 export default {
     template: `
     <section class="mister-keep">
-        <h1>NOTES APP</h1><button @click = "toggleAddModal">Add Todo</button>
+        <h1>NOTES APP</h1><button @click = "toggleAddModal">Add Note</button>
+                <input type="search" id="mySearch" placeholder='search note' v-model='textSearch' @input='searchNote'>
             <div class = "notes-list flex">
                 <component v-for="(note, idx) in notes" :is="note.noteType" :key="idx"
                 :data="note.data" v-on:openUpdateModal = "updateNote" v-on:deleteNote ="removeNote"
@@ -27,12 +28,13 @@ export default {
             openModal: false,
             modalNote: null,
             addModal: false,
+            textSearch:"",
         }
 
     },
 
     created() {
-        // this.loadNotes();
+        
         this.loadNotes();
         
     },
@@ -56,14 +58,21 @@ export default {
             keeps.getNotes()
             .then(notes => {
                 this.notes = notes;
+                
             })
         },
         
         swapNotes(noteId) {
             keeps.notePreferences(noteId);
             this.loadNotes();
-        }
+        },
+
+        searchNote() {
+            this.notes = keeps.filterNotes(this.textSearch);
+            
+        }    
     },
+        
     
     components: {
         keeps,

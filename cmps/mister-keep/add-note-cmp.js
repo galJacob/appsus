@@ -57,7 +57,7 @@ export default {
                     imgUrl: null,
                     text: null,
                     todos: [],
-                    pincolor:"black",
+                    pinColor:"black",
                 }
             }
         }
@@ -118,6 +118,7 @@ export default {
 
         addNote() {
             keeps.addNewNote(this.note);
+            
             this.closeAddModal();
         },
 

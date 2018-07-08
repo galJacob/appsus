@@ -1,3 +1,4 @@
+import keeps from '../../services/keepApp-service/keeps.js'
 
 
 export default {
@@ -8,7 +9,7 @@ export default {
         <li class="card" @click = "$emit('openUpdateModal',  imgNotes)"  v-bind:style="{ backgroundColor: color}">
         <button @click.stop = "$emit('deleteNote', imgNotes.id)">x</button>
         <input class= 'color-btn' type="color" v-model = 'color'  name="favcolor" value="#ffffff" @click.stop="$emit('changeColor', this.value)">
-        <img :src ="'img/notes-img/s-'+data.pinColor+'.png'" @click.stop = "pinNote">
+        <img :src ="'img/notes-img/s-'+pinUrl+'.png'" @click.stop = "pinNote">
                         <img :src="imgNotes.imgUrl" alt="note-image" style="width:100%">
                         <div class="card-container">
                             <h4><b>{{imgNotes.title}}</b></h4> 
@@ -22,6 +23,7 @@ export default {
         return {
             imgNotes: this.data,
             color:'#673AB7',
+            pinUrl :this.data.pinColor,
         }
     },
 
@@ -32,6 +34,10 @@ export default {
         pinNote() {
             this.$emit("notePined", this.imgNotes.id);
         }
+    },
+
+    components: {
+        keeps,
     }
 
 
