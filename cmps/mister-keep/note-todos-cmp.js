@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             todoNotes: this.data,
-            color:'#673AB7',
+            color:this.data.backGround,
         }
     },
 

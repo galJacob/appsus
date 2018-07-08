@@ -345,3 +345,8 @@ span.psw {
        width: 100%;
     }
 }
+
+.addBtn.onloadInput {
+    padding: 0;
+    width:20%;
+}

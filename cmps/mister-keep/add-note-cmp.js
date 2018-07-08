@@ -10,7 +10,7 @@ export default {
         <div class="modal-content animate">
           <div class="imgcontainer">
             <span  @click = "closeAddModal()" class="close" title="Close Modal">&times;</span>
-            <img v-if="imgNote"  src='img/notes-img/sale.png' alt="image" class="avatar"/>
+            <img v-if="imgNote" ref="imgToUpload"  :src='enteredUrl' alt="image" class="avatar"/>
           </div>
       
           <div class="container">
@@ -27,9 +27,10 @@ export default {
                 <label ><b>Text</b></label>
                 <li><input type="text" v-model = 'note.data.text'></input></li>
             </div>
-            <div>
+            <div class='addBtn'>
                 <button class = "btn-for-txt" @click = "openTextNote()">Text Note</button>
-                <button class = "btn-for-img" @click = "openImgNote()">Upload Image</button>
+                <input class = "onloadInput" type="imgUrl"  placeholder="enterUrl" v-model = "enteredUrl">
+                <button @click = "loadImg">Upload!</button>
                 <button class = "btn-for-list" @click = "openListNote()">List Note</button>
             </div>  
             <button class = "modalBtn" @click = "addNote">Add Note</button>
@@ -48,7 +49,7 @@ export default {
             imgNote: false,
             todosNote: false,
             range: 1,
-
+            enteredUrl:'',
             note: {
                 noteType: 'textNote',
                 data: {
@@ -73,36 +74,27 @@ export default {
         },
 
         openTextNote() {
-            console.log(this.textNote);
-
-            if (this.textNote) {
-                this.textNote = false;
-            } else {
-                this.textNote = true;
-                this.imgNote = false;
-                this.todosNote = false;
-                this.note.noteType = "textNote";
-            }
+            this.cleanNote();
+            this.textNote = true;
+            this.imgNote = false;
+            this.todosNote = false;
+            this.note.noteType = "textNote";
         },
         openImgNote() {
-            if (this.imgNote) {
-                this.imgNote = false;
-            } else {
+                this.cleanNote();
                 this.imgNote = true;
                 this.todosNote = false;
                 this.textNote = false;
                 this.note.noteType = "imgNote";
-            }
+            
         },
         openListNote() {
-            if (this.todosNote) {
-                this.todosNote = false;
-            } else {
-                this.todosNote = true;
-                this.imgNote = false;
-                this.textNote = false;
-                this.note.noteType = "todosNote";
-            }
+            this.cleanNote();
+            this.todosNote = true;
+            this.imgNote = false;
+            this.textNote = false;
+            this.note.noteType = "todosNote";
+            
         },
 
         createNewTodo(todo) {
@@ -122,8 +114,37 @@ export default {
             this.closeAddModal();
         },
 
+        onFileChanged (event) {
+            this.imgNote = event.target.files[0]
+            console.log(this.imgNote);
+        
+        },
 
-    },
+        loadImg() {
+            this.imgNote = true;
+            this.note.data.imgUrl = this.enteredUrl;
+            this.note.noteType ='imgNote';
+        },
+        
+        cleanNote() {
+            this.note = {
+                noteType: 'textNote',
+                data: {
+                    id: utils.makeid(),
+                    title: null,
+                    imgUrl: null,
+                    text: null,
+                    todos: [],
+                    pinColor:"black",
+                }
+            }
+            console.log(this.note);
+            
+        }
+},
+
+
+  
     components: {
         keeps,
         utils,

@@ -26,6 +26,7 @@ export default {
             textNote: this.data,
             color:'#673AB7',
             pinUrl :this.data.pinColor,
+            color:this.data.backGround,
         }
     },
     created() {
