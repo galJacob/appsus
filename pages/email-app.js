@@ -31,6 +31,8 @@ export default {
     created() {
         emailsService.query().then(emails => {
             this.emails = emails;
+            console.log(this.emails);
+            
             this.filteredEmails = emails;
             this.selectedemail = emails[0];
             // this.$emit('createdEmails');
