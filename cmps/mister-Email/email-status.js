@@ -1,8 +1,9 @@
 import emailsService from '../../services/emailApp-service/emails.js';
 import busService from '../../services/event-bus.service.js';
 import emails from '../../services/emailApp-service/emails.js';
+
 export default {
-    props: ['readEmails', 'emails'],
+    props: ['readEmails', 'emails','readEmailsCount'],
     template: `
         <section class="email-status">
         <div class="progress-bar">
@@ -14,19 +15,19 @@ export default {
         </section>`,
     data() {
         return {
-
-
+            readedEmails:null,
         }
     },
     created() {
-        
+        this.readedEmails = this.readEmails;
     },
     computed: {
         setProgValue() {
-            if(!parseInt((this.readEmails / this.emails.length) * 100)){
+            busService.$on('updateReadedEmails', readedEmails=>{this.readedEmails = readedEmails});
+            if(!parseInt((this.readEmailsCount / this.emails.length) * 100)){
                 return 0;
             }
-            return parseInt((this.readEmails / this.emails.length) * 100);
+            return parseInt((this.readEmailsCount / this.emails.length) * 100);
         }
     },
     watch: {

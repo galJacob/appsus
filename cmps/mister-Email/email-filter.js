@@ -3,16 +3,18 @@ export default {
     // props: ['readEmails', 'emails'],
     template: `
         <section class="email-filter" @keyup.enter="setBusService">
-            <div class="search-input-container">
+            <div class="search-input-container">    
                 <input type="text" placeholder="search..." v-model="filter.txt" />
                 <i class="fas fa-search "></i>
+            </div>  
+            <div class="check-box-select-container">
+                <select @change="setBusService" v-model="filter.emailStatus">
+                    <option>all</option>
+                    <option>read</option>
+                    <option>unread</option>
+                </select>
+                <input type="checkbox" v-model="filter.date">
             </div>
-            <select v-model="filter.emailStatus">
-                <option >all</option>
-                <option>read</option>
-                <option>unread</option>
-            </select>
-            {{filter.emailStatus}}
         </section>`,
         // value="unread" v-model="filter.emailStatus"  
     data() {    
@@ -20,6 +22,7 @@ export default {
             filter: {
                 txt: '',
                 emailStatus: 'all',
+                date:false,
             }
         }
     },
@@ -31,6 +34,7 @@ export default {
     },
     methods: {
         setBusService() {
+            console.log(this.filter);
             busService.$emit('gotFilter', this.filter);
         }
     },

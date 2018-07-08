@@ -32,6 +32,14 @@ body{
 .email-filter{
     margin:25px 0;
 }
+.space-between{
+    justify-content: space-between;
+}
+.read-emails-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
 .modal-btn{
     position: absolute;
     right: 5px;
@@ -47,13 +55,16 @@ body{
     background-color: #92B4A7;
 }
 .compose-modal{
-    z-index: 1;
+    /* z-index: 1000; */
     width: 50vw;
     height: 50vh;
     background:white;
 }
-.email-compose {
+.email-preview i{
     z-index: 1;
+}
+.email-compose {
+    z-index: 1000;
     position: fixed;
     display: flex;
     justify-content: center;

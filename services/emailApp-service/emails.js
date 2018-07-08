@@ -35,7 +35,7 @@ function getEmailsByEmailStatus(emailStatus) {
     return emails.filter(email => !email.isRead);
 }
 
-function onEmailRead(email){
+function onEmailRead(email) {
     email.isRead = true;
     utils.saveToStorage(EMAILS_KEY, emails);
 }
@@ -62,17 +62,23 @@ function getFilteredEmails(filter) {
     switch (filter.emailStatus) {
         case 'all':
             filteredEmails = emails;
-            console.log(filteredEmails);
             break;
         case 'read':
             filteredEmails = getEmailsByEmailStatus(filter.emailStatus);
-            console.log(filteredEmails);
             break;
         case 'unread':
             filteredEmails = getEmailsByEmailStatus(filter.emailStatus);
-            console.log(filteredEmails);
     }
-    return getEmailsByFilterTxt(filter.txt.toLowerCase(), filteredEmails);
+    if (filter.txt)
+        filteredEmails = getEmailsByFilterTxt(filter.txt.toLowerCase(), filteredEmails);
+    if (filter.date) {
+        filteredEmails.sort(function (a, b) {
+            return a.sentAt - b.sentAt;
+        });
+    }
+    console.log(filteredEmails);
+
+    return filteredEmails;
 }
 
 export default {
@@ -93,26 +99,26 @@ function getEmails() {
             subject: 'first email',
             body: 'this is first email blabla',
             isRead: true,
-            sentAt: 1530799984,
+            sentAt: Date.now(),
         },
         {
             id: utils.makeid(),
             subject: 'haha',
             body: 'laughing email',
             isRead: false,
-            sentAt: 123333131231,
+            sentAt: Date.now(),
         }, {
             id: utils.makeid(),
             subject: 'hello email',
             body: 'hello world blabla',
             isRead: true,
-            sentAt: 122123131231,
+            sentAt: Date.now(),
         }, {
             id: utils.makeid(),
             subject: 'last email',
             body: 'lorem ipsum dolorasdad blabla',
             isRead: false,
-            sentAt: 123123132231,
+            sentAt: Date.now(),
         },
     ];
 }

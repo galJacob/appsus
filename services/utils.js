@@ -6,7 +6,9 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
-
+function sortHelperFunc(a,b){
+return a.sentAt - b.sentAt;
+}
 
 function makeid(length = 5) {
     var text = '';
@@ -18,10 +20,9 @@ function makeid(length = 5) {
 
     return text;
 }
-
-
 export default {
     makeid,
     loadFromStorage,
     saveToStorage,
+    sortHelperFunc,
 }

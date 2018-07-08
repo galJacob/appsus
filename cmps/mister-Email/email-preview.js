@@ -1,11 +1,12 @@
 import emailsService from '../../services/emailApp-service/emails.js';
+import busService from '../../services/event-bus.service.js';
 
 export default {
     props: ['email'],
     template: `
         <section :class="{gray:!email.isRead}" class="email-preview" v-if="email">
-            <i v-if="email.isRead" class="fas fa-envelope-open"></i>
-            <i v-if="!email.isRead" class="fas fa-envelope"></i>
+            <i @click.stop="onMakeEmailUnread" v-if="email.isRead" class="fas fa-envelope-open"></i>
+            <i  @click.stop="onMakeEmailUnread" v-if="!email.isRead" class="fas fa-envelope"></i>
            <span> {{convertTimeStampToDate}} </span>
        <strong> {{email.subject}}</strong>
       <p> {{shorthandBodyPreview}}</p>
@@ -27,6 +28,11 @@ export default {
         },
     },
     methods: {
-
+        onMakeEmailUnread(){
+            if(this.email.isRead){
+                this.email.isRead = false;
+                busService.$emit('changedEmailToUnread');
+            } 
+        }
     },
 }
