@@ -72,12 +72,11 @@ function getFilteredEmails(filter) {
     if (filter.txt)
         filteredEmails = getEmailsByFilterTxt(filter.txt.toLowerCase(), filteredEmails);
     if (filter.date) {
-        filteredEmails.sort(function (a, b) {
+         filteredEmails.sort(function (a, b) {
             return a.sentAt - b.sentAt;
         });
     }
     console.log(filteredEmails);
-
     return filteredEmails;
 }
 

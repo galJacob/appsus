@@ -1,11 +1,10 @@
 import busService from '../../services/event-bus.service.js';
 export default {
-    // props: ['readEmails', 'emails'],
     template: `
         <section class="email-filter" @keyup.enter="setBusService">
             <div class="search-input-container">    
                 <input type="text" placeholder="search..." v-model="filter.txt" />
-                <i class="fas fa-search "></i>
+                <i @click="setBusService" class="fas fa-search "></i>
             </div>  
             <div class="check-box-select-container">
                <strong>by status</strong>
@@ -14,10 +13,9 @@ export default {
                     <option>read</option>
                     <option>unread</option>
                 </select>
-                <strong>by date</strong> <input type="checkbox" v-model="filter.date">
+                <strong>by date</strong> <input type="checkbox" @change="setBusService" v-model="filter.date">
             </div>
         </section>`,
-        // value="unread" v-model="filter.emailStatus"  
     data() {    
         return {
             filter: {

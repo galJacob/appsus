@@ -15,7 +15,6 @@ export default {
                             <strong>body:</strong>
                             <textarea v-model="newEmail.body"></textarea>
                             </div>
-                            
                            <input type="submit" value = "submit" />
                         </form>
                         <i @click="$emit('closeCompose')" class="fas fa-share "></i>
