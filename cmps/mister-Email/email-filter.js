@@ -8,12 +8,13 @@ export default {
                 <i class="fas fa-search "></i>
             </div>  
             <div class="check-box-select-container">
+               <strong>by status</strong>
                 <select @change="setBusService" v-model="filter.emailStatus">
                     <option>all</option>
                     <option>read</option>
                     <option>unread</option>
                 </select>
-                <input type="checkbox" v-model="filter.date">
+                <strong>by date</strong> <input type="checkbox" v-model="filter.date">
             </div>
         </section>`,
         // value="unread" v-model="filter.emailStatus"  

@@ -14,7 +14,7 @@ export default {
         <strong>read emails: {{readEmailsCount}}</strong>  
         </div>
           <template v-for="email in filteredEmails">
-      <email-preview @click.native="onEmailSelected(email.id)" :email="email" :key="email.id" ></email-preview>
+      <email-preview  @click.native="onEmailSelected(email.id),openDetailsInMobile"  :email="email" :key="email.id" ></email-preview>
       </template>   
         </section>`,
     data() {
@@ -23,6 +23,7 @@ export default {
         }
     },
     created() {
+        
     },
     computed: {
     },
@@ -38,6 +39,9 @@ export default {
                     this.readEmails++;
                 }
             })
+        },
+        openDetailsInMobile(){
+            busService.$emit('showDetailsInMobile');
         }
     },
     watch: {
