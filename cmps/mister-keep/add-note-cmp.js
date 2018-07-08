@@ -14,7 +14,7 @@ export default {
           </div>
       
           <div class="container">
-            <label for="uname">Title</label>
+            <label for="uname"><b>Title</b></label>
             <input type="text" name="title" v-model = 'note.data.title' >
 
             <div v-if="todosNote">
@@ -25,7 +25,7 @@ export default {
             </div>
             <div v-if="textNote">
                 <label ><b>Text</b></label>
-                <li><input type="text" v-model = 'note.data.text'></input></li>
+                <input type="text" v-model = 'note.data.text'></input>
             </div>
             <div class='addBtn'>
                 <button class = "btn-for-txt" @click = "openTextNote()">Text Note</button>
@@ -59,6 +59,7 @@ export default {
                     text: null,
                     todos: [],
                     pinColor:"black",
+                    backGround:'#80AB82',
                 }
             }
         }

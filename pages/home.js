@@ -7,7 +7,7 @@ export default {
     },
     data() {
         return {
-            pageTitle: 'home page',
+            pageTitle: 'welcome to our Appsus',
         }
     },
     components: {

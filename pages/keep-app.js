@@ -10,7 +10,7 @@ export default {
         <section class="mister-keep">
             <h1>NOTES APP</h1>
             <div class="notes-menu flex">
-                <button class ="add-note-btn" @click = "toggleAddModal"><img src = 'img/notes-img/addNote.png'></button>
+                <img class ="add-note-btn" src = 'img/notes-img/addNote.png'  @click = "toggleAddModal">
                 <input type="search" id="mySearch" placeholder='search note' v-model='textSearch' @input='searchNote'>
             </div>
             <div class = "notes-list flex wrap">

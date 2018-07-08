@@ -7,23 +7,24 @@ export default {
         <div id="id01" class="modal">
   
         <div class="modal-content animate">
-          <div class="imgcontainer">
+          <div class="img-container">
             <span  @click = "closeModal()" class="close" title="Close Modal">&times;</span>
-            <img v-if = 'noteToUpdate.imgUrl' :src="noteToUpdate.imgUrl" alt="image" class="avatar"/>
+            <img v-if = 'noteToUpdate.imgUrl' :src="noteToUpdate.imgUrl" alt="image" />
           </div>
       
           <div class="container">
-            <label for="uname">Title</label>
+            <label for="uname"><b>Title</b></label>
             <input type="text" v-model = 'title' name="title" >
-
-            <input v-if = 'noteToUpdate.imgUrl' class = "onloadInput" type="imgUrl"   v-model = "imgSrc">
-            <button v-if ='noteToUpdate.imgUrl'@click = 'onloadNewImg' >Upload!</button>
+            <div class = "update-url">
+                <input v-if = 'noteToUpdate.imgUrl' class = "onloadInput" type="text"  v-model = "imgSrc">
+                <button class = 'upload-btn' v-if ='noteToUpdate.imgUrl'@click = 'onloadNewImg' >Upload!</button>
+            </div>
       
-            <label v-if = "text"><b>Todos</b></label>
+            <label v-if = "text"><b>Text</b></label>
             <input v-if = "text" type="text" v-model = "text"  name="text" >
 
-            <label v-if = "todos.length" ><b>Text</b></label>
-            <li v-if = "todos.length" v-for = "(todo,idx) in todos"><input type="text" v-model = "todos[idx]"></input></li>
+            <label v-if = "todos.length" ><b>Todos</b></label>
+            <li class= 'clean-list' v-if = "todos.length" v-for = "(todo,idx) in todos"><input type="text" v-model = "todos[idx]"></input></li>
               
             <button class = "modalBtn" @click = "saveNoteChanges()">save changes</button>
             

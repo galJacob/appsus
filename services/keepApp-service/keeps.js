@@ -10,10 +10,10 @@ function GetDefaulNotes() {
                 id: utils.makeid(),
                 title: "tough life",
                 imgUrl: null,
-                text: 'i am a text note 1',
+                text: 'i am a test note 1',
                 todos: [],
                 pinColor:"black",
-                backGround:'#D8DC6A',
+                backGround:'#80AB82',
             }
         },
         {
@@ -22,10 +22,10 @@ function GetDefaulNotes() {
                 id: utils.makeid(),
                 title: "great img",
                 imgUrl: 'img/notes-img/sale.png',
-                text: 'i am a img note note 2',
+                text: 'i am a img test note 2',
                 todos: [],
                 pinColor:"black",
-                backGround:'#D8DC6A',
+                backGround:'#80AB82',
             }
         },
 
@@ -36,9 +36,33 @@ function GetDefaulNotes() {
                 title: "stuff todo",
                 imgUrl: null,
                 text: null,
+                todos: ['do something', 'do something', 'do something', 'go to work'],
+                pinColor:"black",
+                backGround:'#80AB82',
+            }
+        },    
+        {
+            noteType: 'imgNote',
+            data: {
+                id: utils.makeid(),
+                title: "img note",
+                imgUrl: 'https://platinumlist.net/upload/event/promo/3808_1600wwrte-01520436028.jpg',
+                text: null,
+                todos: [],
+                pinColor:"black",
+                backGround:'#80AB82',
+            }
+        },    
+        {
+            noteType: 'todosNote',
+            data: {
+                id: utils.makeid(),
+                title: "stuff todo",
+                imgUrl: null,
+                text: null,
                 todos: ['by stuff', 'do homework', 'walk the dog'],
                 pinColor:"black",
-                backGround:'#D8DC6A',
+                backGround:'#80AB82',
             }
         }
     ];
