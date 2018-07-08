@@ -8,7 +8,7 @@ export default {
                 <i class="fas fa-search "></i>
             </div>
             <select v-model="filter.emailStatus">
-                <option >all</option>
+                <option>all</option>
                 <option>read</option>
                 <option>unread</option>
             </select>
@@ -31,6 +31,7 @@ export default {
     },
     methods: {
         setBusService() {
+            console.log(this.filter);
             busService.$emit('gotFilter', this.filter);
         }
     },
