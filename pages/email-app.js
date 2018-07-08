@@ -33,7 +33,7 @@ export default {
             this.emails = emails;
             this.filteredEmails = emails;
             this.selectedemail = emails[0];
-            this.$emit('createdEmails');
+            // this.$emit('createdEmails');
             emailsService.countReadenEmails()
                 .then(readEmails => {
                     this.readEmails = readEmails;
