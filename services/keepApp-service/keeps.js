@@ -23,7 +23,7 @@ function GetDefaulNotes() {
                 imgUrl: 'img/notes-img/sale.png',
                 text: 'i am a img note note 2',
                 todos: [],
-                pinColor:'black',
+                pinColor:"black",
             }
         },
 
@@ -78,15 +78,45 @@ function notePreferences(noteId) {
     });
     var pointedNote = [];
     pointedNote = notes.splice(noteIndex,1);
-    if (notes.data.pinColor === 'black') {
+    
+    if (pointedNote[0].data.pinColor === 'black') {
         notes = pointedNote.concat(notes); 
         notes[0].data.pinColor = 'red';
     } else {
         notes = notes.concat(pointedNote);
         notes[notes.length - 1].data.pinColor = 'black';
-}    
+    }    
     utils.saveToStorage(NOTES, notes);
 }
+
+function filterNotes(textSearch) {
+    textSearch = textSearch.toLowerCase();
+    var filteredNotes = notes.filter(note=>{
+    return checkTitle(note.data.title, textSearch)||
+    (checkInTodos(note.data.todos, textSearch)) ||
+    note.data.text && checkText(note.data.text, textSearch);
+    })
+    console.log(notes);
+    return filteredNotes;
+}
+
+function checkInTodos(todos, textSearch) {
+    var filteredTodos = todos.filter(todo=>{
+        todo = todo.toLowerCase();
+        return todo.includes(textSearch);
+    })
+    return filteredTodos.length;
+}
+
+function checkTitle(title, textSearch) {
+    title.toLowerCase();
+    return title.includes(textSearch)
+}
+
+function checkText(text, textSearch) {
+    return text.includes(textSearch);
+}
+
 
 
 
@@ -97,4 +127,5 @@ export default {
     addNewNote,
     deleteNote,
     notePreferences,
+    filterNotes,
 }

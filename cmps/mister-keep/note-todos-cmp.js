@@ -1,3 +1,4 @@
+import keeps from '../../services/keepApp-service/keeps.js'
 
 
 export default {
@@ -32,5 +33,9 @@ export default {
         pinNote() {
             this.$emit("notePined", this.todoNotes.id);
         }
-    }
+    },
+
+    components: {
+        keeps,
+    },
 }
