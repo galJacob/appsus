@@ -13,6 +13,7 @@ function GetDefaulNotes() {
                 text: 'i am a text note 1',
                 todos: [],
                 pinColor:"black",
+                backGround:'#D8DC6A',
             }
         },
         {
@@ -24,6 +25,7 @@ function GetDefaulNotes() {
                 text: 'i am a img note note 2',
                 todos: [],
                 pinColor:"black",
+                backGround:'#D8DC6A',
             }
         },
 
@@ -36,6 +38,7 @@ function GetDefaulNotes() {
                 text: null,
                 todos: ['by stuff', 'do homework', 'walk the dog'],
                 pinColor:"black",
+                backGround:'#D8DC6A',
             }
         }
     ];
@@ -57,6 +60,7 @@ function saveChanges(changedNote) {
         if (note.data.id === changedNote.id)
             note.data = changedNote;
     });
+    
     utils.saveToStorage(NOTES, notes);
 }
 
@@ -66,9 +70,13 @@ function addNewNote(note) {
 }
 
 function deleteNote(noteId) {
-    notes = notes.filter(note => {
-        return noteId != note.data.id;
-    })
+    if(notes.length === 1){
+        notes =[]; 
+    } else {
+        notes = notes.filter(note => {
+            return noteId != note.data.id;
+        })
+    }
     utils.saveToStorage(NOTES, notes);
 }
 
@@ -102,8 +110,10 @@ function filterNotes(textSearch) {
 
 function checkInTodos(todos, textSearch) {
     var filteredTodos = todos.filter(todo=>{
-        todo = todo.toLowerCase();
-        return todo.includes(textSearch);
+        if (todo) {
+            todo = todo.toLowerCase()
+            return todo.includes(textSearch);
+        } 
     })
     return filteredTodos.length;
 }

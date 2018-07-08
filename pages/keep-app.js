@@ -34,8 +34,9 @@ export default {
     },
 
     created() {
-        
         this.loadNotes();
+        console.log(this.notes);
+        
         
     },
     

@@ -15,6 +15,9 @@ export default {
           <div class="container">
             <label for="uname">Title</label>
             <input type="text" v-model = 'title' name="title" >
+
+            <input v-if = 'noteToUpdate.imgUrl' class = "onloadInput" type="imgUrl"   v-model = "imgSrc">
+            <button v-if ='noteToUpdate.imgUrl'@click = 'onloadNewImg' >Upload!</button>
       
             <label v-if = "text"><b>Todos</b></label>
             <input v-if = "text" type="text" v-model = "text"  name="text" >
@@ -39,10 +42,12 @@ export default {
             text: this.note.text,
             todos: this.note.todos,
             pinColor:this.note.pinColor,
+            imgSrc:null,
         }
     },
     created() {
-
+        console.log(this.note);
+        
     },
 
     methods: {
@@ -58,7 +63,13 @@ export default {
             this.noteToUpdate.pinColor = this.pinColor;
             keeps.saveChanges(this.noteToUpdate);
             this.closeModal();
+        },
+
+        onloadNewImg() {
+            this.noteToUpdate.imgUrl = this.imgSrc;
         }
+
+        
     },
     components: {
         keeps,
