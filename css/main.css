@@ -52,7 +52,7 @@ body{
 .mister-email{
     font-family: 'Cuprum', sans-serif;
     font-size: 0.8em;
-    border: 3px ridge #bcbcbc;
+    border: 5px ridge #bcbcbc;
     display: flex;
     flex-wrap: wrap;
 }
@@ -71,117 +71,26 @@ body{
 .modal-btn{
     position: absolute;
     right: 5px;
-<<<<<<< HEAD
     margin: 2px;    
     background-color: white;
     color: black;
     cursor: pointer;
     border: 2px solid #e7e7e7;
-=======
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.3em;
->>>>>>> 2e1433ec6d9a0957030fae7aabd769d9754b8c62
 }
 .modal-btn:hover{
-    transform: scale(1.1);
+    background-color: #92B4A7;
 }
 
 .modalBtn {
     background-color: '#7DCD85'
 }
 .compose-modal{
-<<<<<<< HEAD
-=======
-    /* z-index: 1000; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
->>>>>>> 2e1433ec6d9a0957030fae7aabd769d9754b8c62
     width: 50vw;
     height: 50vh;
     background:white;
-   box-shadow:  0px 0px 3px 5px #2F2F2F inset;
-}
-
-/* vue transitions */
-.bounce-enter-active {
-    animation: bounce-in .3s;
-  }
-  .bounce-leave-active {
-    animation: bounce-in .3s reverse;
-  }
-  @keyframes bounce-in {
-    0% {
-      transform: scale(0);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-
-
-/* vue transitions */
-.compose-modal input[type="submit"]{
-    font-family: cuprum;
-    background-color:#2F2F2F; /* Green */
-    border: none;
-    color: white;
-    /* padding: */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    /* font-size: 16px; */
-    margin: 0 60px;
-    cursor: pointer;
-}
-.fa-share{
-    font-size: 1.3em;
-    cursor: pointer;
-}
-.fa-share:hover{
-    transform: scale(1.1);
-}
-form{
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: space-around;
-}
-form *{
-    margin-bottom: 10px;
-}
-form div{
-    display: flex;
-    align-items: left;
-    flex-direction: column;
-}
-.compose-modal h1{
-    text-align: center;
-    font-size: 2em;
-    margin: 0;
-}
-.compose-modal input[type="text"]{
-    /* margin: 10px 60px !important; */
-    padding: 0 10px;
-    margin: 0;
-}
-.compose-modal input[type="text"]:hover{
-
 }
 .email-preview i{
     z-index: 1;
-}
-.check-box-select-container{
-    padding: 0 15% !important;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.check-box-select-container select{
-    box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;    
 }
 .email-compose {
     z-index: 1000;
@@ -219,13 +128,20 @@ progress{
 .delete-btn{
     position: absolute;
     right: 5px;
-    padding: 10px;
+    /* top: 162px; */
+    padding-left: 5px !important;
+    margin: 2px;
+    background-color: white;
     color: black;
     cursor: pointer;
-    font-size: 1.3em;
+    margin-top: 0 !important;
+    border: 2px solid #e7e7e7;
 }
 .delete-btn:hover{
-    transform: scale(1.1);
+    background-color: #92B4A7;
+}
+.gray{
+    /* background-color: #333; */
 }
 .fa-envelope-open,.fa-envelope{
     position:absolute;
@@ -300,10 +216,13 @@ border-top: 1px dotted #80808091;
     width: 95%;
     background: #fcfcfc;
     border: 1px solid #aaa;
-    padding: 0 10px;
+    padding: 0;
     margin: 0;
     box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
 }
+.email-filter input[type=radio]{
+   
+  }
   
 .radio-buttons-container{
     display: flex;
@@ -315,15 +234,9 @@ border-top: 1px dotted #80808091;
 
 
 
-.email-details h1,.email-details h2,.email-details hr,.email-details p{
-    padding-left: 20px;
-    margin-top: 30px;
-}
-.email-details hr{
-    margin-top: 0;
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+.email-details *{
+    padding-left: 5px;
+    margin-top: 10px;
 }
 .email-details h1{
     padding-top: 10px;
@@ -334,41 +247,8 @@ border-top: 1px dotted #80808091;
     font-size:1em;
 }
 h2 span{
-    color: #BDC4A7;
+    color:lightgray;
     padding-left: 0;
-}
-@media screen and (min-width: 320px) and (max-width: 850px) {
-    .email-details{
-        position: fixed;
-        transform: translateX(100vw);
-        transition: all 0.5s;
-        width: 100%;
-        background-color: #444;
-    }
-    .email-list{
-        width: 100vw;
-    }
-    .prec-value{
-        bottom:2px;
-    }
-    .modal-btn {
-        padding: 5px;
-        font-size: 1em;
-    }
-    .fa-share{
-        margin-left: 5px;
-    }
-    .nav-bar{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-    .email-details-shown{
-        z-index: 999;
-        transform: translateX(0);
-        transition: all 0.5s;
-    }
 }
 /* gal */
 
@@ -383,11 +263,9 @@ h2 span{
 
 /*nav-bar*/
 .nav-bar{
-    font-family: cuprum;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    font-size: 1.3em;
     overflow: hidden;
     background-color: #333;
 }
@@ -402,7 +280,6 @@ h2 span{
     text-align: center;
     padding: 1px 16px;
     text-decoration: none;
-    cursor: pointer;
 }
 
 .nav-bar li a:hover {
@@ -420,6 +297,7 @@ h2 span{
     border: 1px solid black;
     border-radius: 6px;
     border-color: transparent;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -437,6 +315,7 @@ h2 span{
 .top-card-menu {
     width: 100%;
     align-items: center;
+    
 }
 
 
@@ -447,7 +326,8 @@ h2 span{
 .top-card-menu button{
     border-style: none;
     background:none;
-    font-size: 1.5em
+    font-size: 30px;
+    cursor: pointer;
 }
 
 
@@ -462,13 +342,14 @@ h2 span{
 .mister-keep h1 {
     font-family: Knewave;
     text-align: center;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 
 
 .top-card-menu input {
     width: 20px;
+    border-radius: 30%;
 }
 
 .add-note-btn {
@@ -480,6 +361,8 @@ h2 span{
 .notes-menu{
     justify-content: center;
     align-items: center;
+    background-color: #092327;
+    padding: 30px;
 }
 
 .notes-menu input {
@@ -487,6 +370,7 @@ h2 span{
     padding: 0px;
     font-family: 'Cuprum', sans-serif;
     margin-left: 10px;
+    width:200px;
 }
 
 .notes-list {
@@ -496,6 +380,7 @@ h2 span{
     align-items: flex-start;
     margin-top:15px;
     align-content: center;
+    font-size: 1.2em;
 }
 
 /*modal*/
@@ -538,9 +423,7 @@ input[type=text], input[type=password] {
     position: relative;
 }
 
-.todosNote button{
-    cursor: pointer;
-}
+
 .upload-btn {
     background-color: #4CAF50;
     color: white;

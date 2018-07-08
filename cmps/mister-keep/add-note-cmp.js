@@ -8,7 +8,7 @@ export default {
         <div id="id01" class="modal">
   
         <div class="modal-content animate">
-          <div class="imgcontainer">
+          <div class="img-container">
             <span  @click = "closeAddModal()" class="close" title="Close Modal">&times;</span>
             <img v-if="imgNote" ref="imgToUpload"  :src='enteredUrl' alt="image" class="avatar"/>
           </div>
@@ -17,7 +17,7 @@ export default {
             <label for="uname"><b>Title</b></label>
             <input type="text" name="title" v-model = 'note.data.title' >
 
-            <div v-if="todosNote">
+            <div v-if="todosNote" class='add-todos'>
             <label ><b>Todos</b></label>
                 <button @click="addTodo">+</button>
                 <input  type="text" v-model = "note.data.text" name="text">
@@ -59,7 +59,7 @@ export default {
                     text: null,
                     todos: [],
                     pinColor:"black",
-                    backGround:'#80AB82',
+                    backGround:'#02C3BD',
                 }
             }
         }

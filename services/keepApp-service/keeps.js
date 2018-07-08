@@ -13,7 +13,7 @@ function GetDefaulNotes() {
                 text: 'i am a test note 1',
                 todos: [],
                 pinColor:"black",
-                backGround:'#80AB82',
+                backGround:'#037171',
             }
         },
         {
@@ -25,7 +25,7 @@ function GetDefaulNotes() {
                 text: 'i am a img test note 2',
                 todos: [],
                 pinColor:"black",
-                backGround:'#80AB82',
+                backGround:'#037171',
             }
         },
 
@@ -38,7 +38,7 @@ function GetDefaulNotes() {
                 text: null,
                 todos: ['do something', 'do something', 'do something', 'go to work'],
                 pinColor:"black",
-                backGround:'#80AB82',
+                backGround:'#037171',
             }
         },    
         {
@@ -50,7 +50,7 @@ function GetDefaulNotes() {
                 text: null,
                 todos: [],
                 pinColor:"black",
-                backGround:'#80AB82',
+                backGround:'#037171',
             }
         },    
         {
@@ -62,7 +62,7 @@ function GetDefaulNotes() {
                 text: null,
                 todos: ['by stuff', 'do homework', 'walk the dog'],
                 pinColor:"black",
-                backGround:'#80AB82',
+                backGround:'#037171',
             }
         }
     ];
