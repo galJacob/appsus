@@ -22,9 +22,8 @@ body{
 }
 
 .mister-email{
-    font-family: sans-serif;
+    font-family: 'Cuprum', sans-serif;
     font-size: 0.8em;
-
     border: 5px ridge #bcbcbc;
     display: flex;
     flex-wrap: wrap;
@@ -35,7 +34,17 @@ body{
 }
 .modal-btn{
     position: absolute;
-    right: 10%;
+    right: 5px;
+    margin: 2px;    
+    background-color: white;
+    color: black;
+    /* border: 2px solid #e7e7e7; */
+    cursor: pointer;
+    border: 2px solid #e7e7e7;
+    /* border-right: 4px ridge #bcbcbc; */
+}
+.modal-btn:hover{
+    background-color: #92B4A7;
 }
 .compose-modal{
     z-index: 1;
@@ -44,6 +53,7 @@ body{
     background:white;
 }
 .email-compose {
+    z-index: 1;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -54,7 +64,7 @@ body{
 }
 .email-status{
     width: 100vw;
-    height: 5vh;
+    height: 6vh;
     background-color: #333;
 }
 template{
@@ -70,11 +80,25 @@ progress{
     height: 90vh;
     overflow-y:auto;
     border-right: 2px ridge #bcbcbc;
-    border-bottom: 2px ridge #bcbcbc;
 }
 .email-details{
     width: 70%;
     height: 90vh;
+}
+.delete-btn{
+    position: absolute;
+    right: 5px;
+    /* top: 162px; */
+    padding-left: 5px !important;
+    margin: 2px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin-top: 0 !important;
+    border: 2px solid #e7e7e7;
+}
+.delete-btn:hover{
+    background-color: #92B4A7;
 }
 .gray{
     /* background-color: #333; */
@@ -100,14 +124,34 @@ border-top: 1px dotted #80808091;
 .email-preview:last-child{
     border-bottom: 1px dotted #80808091;
 }
-progress {
-    text-align: center;
+.progress-bar {
+    background-color: #1a1a1a;
+    padding: 5px 1px 1px 1px;
+    margin: 9px 0;
+    box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+    margin-top: 6px;   
+}
+.prec-value{
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    color: white;
+    font-family: monospace;
+    font-size: 1.2em;
+}
+.progress-bar .bar  {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    height: -webkit-fill-available;
+    transition: width .4s ease-in-out;
+    background-color:#BDC4A7;
+}
+  .progress-wrapper{
+      width: 100%;
+      background-color:gray;
+      height: 5vh;
   }
-  progress:after {
-    content: attr(value)'%';
-  }
-
-
 .email-preview span{
     position: absolute;
     right: 2%;
@@ -151,10 +195,11 @@ progress {
 
 
 .email-details *{
-    padding-left: 3%;
-    margin-top: 5%;
+    padding-left: 5px;
+    margin-top: 10px;
 }
 .email-details h1{
+    padding-top: 10px;
     font-size: 2em;
     margin:0;
 }
@@ -193,7 +238,7 @@ h2 span{
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1px 16px;
     text-decoration: none;
 }
 

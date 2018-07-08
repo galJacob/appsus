@@ -6,7 +6,7 @@ export default {
         <section class="email-details">
        <h1> {{selectedemail.subject}}</h1>
       <h2>  <span>sent at:</span> {{convertTimeStampToDate }} </h2>
-      <button @click.stop="onDeleteEmail(selectedemail.id)">x</button>
+      <button @click.stop="onDeleteEmail(selectedemail.id)" class="delete-btn">delete this E-mail</button>
        <hr>
       <p> {{selectedemail.body}}</p>
         </section>`,
