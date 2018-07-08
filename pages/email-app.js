@@ -9,7 +9,7 @@ export default {
     template: ` 
     <section  class="mister-email">
         <email-compose @emailSent="onAddNewEmail" @closeCompose="composeShown=!composeShown"  v-if="composeShown"></email-compose>
-    <button @click="composeShown=!composeShown" class="modal-btn">open compose</button>
+    <button @click="composeShown=!composeShown" class="modal-btn">send a new E-mail</button>
     <!-- <keep-alive> -->
     <!-- </keep-alive> -->
       <email-list :emails="emails" :filteredEmails="setFilteredEmails" @emailHasRead="updateReadEmails" 
