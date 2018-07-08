@@ -66,6 +66,8 @@ function saveChanges(changedNote) {
 
 function addNewNote(note) {
     notes.push(note);
+    console.log('from service add',notes);
+    
     utils.saveToStorage(NOTES, notes);
 }
 
@@ -81,20 +83,30 @@ function deleteNote(noteId) {
 }
 
 function notePreferences(noteId) {
-    var noteIndex = notes.findIndex(note=>{     
+    var tempNotes =JSON.parse(JSON.stringify(notes))
+    var noteIndex = tempNotes.findIndex(note=>{     
         return note.data.id === noteId;
     });
     var pointedNote = [];
-    pointedNote = notes.splice(noteIndex,1);
+    pointedNote = tempNotes.splice(noteIndex,1);
     
     if (pointedNote[0].data.pinColor === 'black') {
-        notes = pointedNote.concat(notes); 
-        notes[0].data.pinColor = 'red';
+        tempNotes.unshift(pointedNote[0])
+        
+        // tempNotes = pointedNote.concat(tempNotes); 
+        tempNotes[0].data.pinColor = 'red';
     } else {
-        notes = notes.concat(pointedNote);
-        notes[notes.length - 1].data.pinColor = 'black';
+        console.log('else from service');
+        
+        // tempNotes = tempNotes.concat(pointedNote);
+        tempNotes.push(pointedNote[0]);
+        tempNotes[tempNotes.length - 1].data.pinColor = 'black';
     }    
-    utils.saveToStorage(NOTES, notes);
+    utils.saveToStorage(NOTES, tempNotes);
+    notes = tempNotes;
+    console.log('from service',tempNotes);
+    
+    return Promise.resolve(tempNotes)
 }
 
 function filterNotes(textSearch) {

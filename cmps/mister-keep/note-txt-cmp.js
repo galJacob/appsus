@@ -3,19 +3,16 @@
 export default {
     props: ['data'],
     template: `
-        <section>
-        <ul class = "clean-list">
-        <li>
-        <div class="card" @click = "$emit('openUpdateModal',  textNote)"  v-bind:style="{ backgroundColor: color}">
-        <button @click.stop = "$emit('deleteNote', textNote.id)">x</button>
+        <section class= "note-container clean-list">
+        <div class="card " @click = "$emit('openUpdateModal',  data)"  v-bind:style="{ backgroundColor: color}">
+        <button @click.stop = "$emit('deleteNote', data.id)">x</button>
         <input class= 'color-btn' type="color" v-model = 'color'  name="favcolor" value="#ffffff" @click.stop="$emit('changeColor', this.value)">
-        <img :src ="'img/notes-img/s-'+data.pinColor+'.png'" @click.stop = "pinNote">
+        <button><img :src ="'img/notes-img/s-'+data.pinColor+'.png'" @click.stop = "pinNote"></button>
                         <div class="card-container">
-                            <h4><b>{{textNote.title}}</b></h4> 
-                            <p>{{textNote.text}}</p> 
+                            <h4><b>{{data.title}}</b></h4> 
+                            <p>{{data.text}}</p> 
                         </div>
                     </div>
-                </li>
             </ul>
         </section>
     
@@ -23,8 +20,6 @@ export default {
 
     data() {
         return {
-            textNote: this.data,
-            color:'#673AB7',
             pinUrl :this.data.pinColor,
             color:this.data.backGround,
         }
@@ -35,7 +30,7 @@ export default {
 
     methods: {
         pinNote() {
-            this.$emit("notePined", this.textNote.id);
+            this.$emit("notePined", this.data.id);
         }
     }
 }

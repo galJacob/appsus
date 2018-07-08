@@ -109,8 +109,9 @@ export default {
         },
 
         addNote() {
-            keeps.addNewNote(this.note);
+            console.log(this.note);
             
+            this.$emit("addNote", this.note);
             this.closeAddModal();
         },
 

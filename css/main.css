@@ -248,6 +248,7 @@ h2 span{
 
 /*notes card*/
 .card {
+    max-width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
@@ -261,14 +262,27 @@ h2 span{
 }
 
 /*keep-app*/
+.note-container {
+    max-width: 1000px;
+}
 .mister-keep h1 {
     text-align: center;
+}
+
+.add-note-btn {
+    border: none;
+    background-color: white;
+}
+
+.notes-menu{
+    justify-content: center;
 }
 
 .notes-list {
     margin: 0 auto;
     justify-content: center;
-    width: 950px;
+    max-width: 950px;
+    background-color: springgreen;
 }
 
 /*modal*/
