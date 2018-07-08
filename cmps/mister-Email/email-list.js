@@ -5,20 +5,26 @@ import emailFilter from './email-filter.js';
 
 
 export default {
-    props: ['emails','filteredEmails'],
+    props: ['emails', 'filteredEmails','readEmailsCount'],
     template: `
     <section class="email-list">
-    <email-filter></email-filter>   
-      <template v-for="email in filteredEmails">
+    <email-filter></email-filter> 
+        <div class="read-emails-container">
+        <strong>inbox:</strong>
+        <strong>read emails: {{readEmailsCount}}</strong>  
+        </div>
+          <template v-for="email in filteredEmails">
       <email-preview @click.native="onEmailSelected(email.id)" :email="email" :key="email.id" ></email-preview>
-      </template>
+      </template>   
         </section>`,
     data() {
         return {
+            // readEmailsCount: null,
         }
     },
     created() {
-
+    },
+    computed: {
     },
     methods: {
         onEmailSelected(id) {
@@ -26,20 +32,18 @@ export default {
             emailsService.getEmailById(id).then(email => {
                 this.$emit('emailSelected', id);
                 if (!email.isRead) {
-                this.$emit('emailHasRead');
-                emailsService.onEmailRead(email);
+                    this.$emit('emailHasRead');
+                    emailsService.onEmailRead(email);
                     email.isRead = true;
                     this.readEmails++;
                 }
             })
-            // console.log(email);
         }
     },
     watch: {
-        readEmails(currReadEmails) {
-            // busService.$emit('emailHasRead', currReadEmails);
-        }
+       
     },
+
     components: {
         emailPreview,
         emailFilter,
