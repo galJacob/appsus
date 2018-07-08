@@ -307,11 +307,13 @@ h2 span{
 
 /*nav-bar*/
 .nav-bar{
+    font-family: cuprum;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #332;
+    font-size: 1.3em;
 }
 
 .nav-bar li {
@@ -324,6 +326,7 @@ h2 span{
     text-align: center;
     padding: 1px 16px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .nav-bar li a:hover {
