@@ -4,18 +4,29 @@ export default {
     props: ['readEmails', 'emails'],
     template: `
         <section class="email-status">
-        <progress :value="readEmails" :max="emails.length">
+        <progress :value="setProgValue" :max="100">
+           
         </progress>
         </section>`,
     data() {
         return {
+            progValue :parseInt((this.readEmails/this.emails.length)*100),
         }
     },
     created() {
+        console.log('c');
+        console.log(this.progValue);
+        
     },
     computed: {
+        setProgValue(){
+        }
     },
     watch: {
+        progValue(){
+            console.log('c');
+            
+        }
     },
     methods: {
     },

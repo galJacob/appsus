@@ -9,9 +9,9 @@ export default {
     template: `
     <section class="email-list">
     <email-filter></email-filter>   
-      <div v-for="email in filteredEmails">
+      <template v-for="email in filteredEmails">
       <email-preview @click.native="onEmailSelected(email.id)" :email="email" :key="email.id" ></email-preview>
-      </div>
+      </template>
         </section>`,
     data() {
         return {

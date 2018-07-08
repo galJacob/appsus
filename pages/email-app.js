@@ -8,9 +8,9 @@ import emailCompose from '../cmps/mister-Email/email-compose.js';
 export default {
     template: ` 
     <section  class="mister-email">
+        <email-compose @emailSent="onAddNewEmail" @closeCompose="composeShown=!composeShown"  v-if="composeShown"></email-compose>
     <button @click="composeShown=!composeShown" class="modal-btn">open compose</button>
     <!-- <keep-alive> -->
-    <email-compose @emailSent="onAddNewEmail" @closeCompose="composeShown=!composeShown"  v-if="composeShown"></email-compose>
     <!-- </keep-alive> -->
       <email-list :emails="emails" :filteredEmails="setFilteredEmails" @emailHasRead="updateReadEmails" 
       @emailSelected="updateSelectedEmail"></email-list>
