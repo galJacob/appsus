@@ -19,7 +19,7 @@ export default {
     },
     computed: {
         convertTimeStampToDate() {
-            return moment(this.email.sentAt).format('LT');
+            return moment(this.email.sentAt).format('LLL');
         },
         shorthandBodyPreview() {
             if (this.email.body.length > 20)

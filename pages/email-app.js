@@ -35,10 +35,7 @@ export default {
         emailsService.query().then(emails => {
             this.emails = emails;
             this.filteredEmails = emails;
-            console.log( 'emails: ',this.emails);
-            console.log('filtered:',this.filteredEmails);
             this.selectedemail = emails[0];
-            // this.$emit('createdEmails');
             emailsService.countReadenEmails()
                 .then(readEmails => {
                     this.readEmails = readEmails;
