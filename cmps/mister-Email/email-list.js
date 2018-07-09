@@ -1,6 +1,6 @@
 import emailPreview from './email-preview.js';
 import emailsService from '../../services/emailApp-service/emails.js';
-import busService from '../../services/event-bus.service.js';
+import busService from '../../services/event-busService.js';
 import emailFilter from './email-filter.js';
 
 

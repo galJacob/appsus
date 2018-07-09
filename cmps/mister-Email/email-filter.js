@@ -1,4 +1,4 @@
-import busService from '../../services/event-bus.service.js';
+import busService from '../../services/event-busService.js';
 export default {
     template: `
         <section class="email-filter" @keyup.enter="setBusService">

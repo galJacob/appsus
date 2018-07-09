@@ -1,7 +1,7 @@
 import emailsService from '../services/emailApp-service/emails.js';
 import emailList from '../cmps/mister-Email/email-list.js';
 import emailDetails from '../cmps/mister-Email/email-details.js';
-import busService from '../../services/event-bus.service.js';
+import busService from '../services/event-busService.js';
 import emailStatus from '../cmps/mister-Email/email-status.js';
 import emailCompose from '../cmps/mister-Email/email-compose.js';
 
