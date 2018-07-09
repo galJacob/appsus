@@ -13,19 +13,24 @@ export default {
           </div>
       
           <div class="container">
-            <label for="uname"><b>Title</b></label>
-            <input type="text" v-model = 'title' name="title" >
-            <div class = "update-url">
-                <input v-if = 'noteToUpdate.imgUrl' class = "onloadInput" type="text"  v-model = "imgSrc">
-                <button class = 'upload-btn' v-if ='noteToUpdate.imgUrl'@click = 'onloadNewImg' >Upload!</button>
-            </div>
-      
-            <label v-if = "text"><b>Text</b></label>
-            <input v-if = "text" type="text" v-model = "text"  name="text" >
+            <label><b>Title</b></label>
+            <div ref="noteTitle" contenteditable="true" >{{note.title}}</div>
 
-            <label v-if = "todos.length" ><b>Todos</b></label>
-            <li class= 'clean-list' v-if = "todos.length" v-for = "(todo,idx) in todos"><input type="text" v-model = "todos[idx]"></input></li>
-              
+            <div v-if = 'note.imgUrl' >
+            <label><b>Image Source</b></label>
+            <div class = "update-url" ref="noteImgSrc" contenteditable="true">{{note.imgUrl}}</div>
+                <button class = 'upload-btn' @click = 'onloadNewImg' >Upload!</button>
+            </div>
+
+            <div v-if = "note.text">
+            <label><b>Text</b></label>
+            <div ref="noteText" contenteditable="true">{{note.text}}</div>
+            </div>
+
+            <div v-if = "note.todos.length">
+            <label><b>Todos</b></label>
+            <div v-for = "(todo,idx) in note.todos" ref="todos" contenteditable="true">{{todo}}</div>
+            </div>  
             <button class = "modalBtn" @click = "saveNoteChanges()">save changes</button>
             
           </div>
@@ -39,11 +44,8 @@ export default {
     data() {
         return {
             noteToUpdate: this.note,
-            title: this.note.title,
             text: this.note.text,
             todos: this.note.todos,
-            pinColor:this.note.pinColor,
-            imgSrc:null,
         }
     },
     created() {
@@ -58,16 +60,18 @@ export default {
         },
 
         saveNoteChanges() {
-            this.noteToUpdate.title = this.title;
-            this.noteToUpdate.text = this.text;
-            this.noteToUpdate.todos = this.todos;
-            this.noteToUpdate.pinColor = this.pinColor;
+            if (this.note.title) this.noteToUpdate.title = this.$refs.noteTitle.innerText;
+            if (this.note.text) this.noteToUpdate.text = this.$refs.noteText.innerText;
+            if (this.note.todos.length) this.noteToUpdate.todos = this.$refs.todos.innerText;
+            console.log(this.todos);
+            
+            this.noteToUpdate.pinColor = this.note.pinColor;
             keeps.saveChanges(this.noteToUpdate);
             this.closeModal();
         },
 
         onloadNewImg() {
-            this.noteToUpdate.imgUrl = this.imgSrc;
+            this.noteToUpdate.imgUrl = this.$refs.noteImgSrc.innerText;
         }
 
         
