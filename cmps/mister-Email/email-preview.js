@@ -1,5 +1,5 @@
-import emailsService from '../../services/emailApp-service/emails.js';
-import busService from '../../services/event-bus.service.js';
+
+import busService from '../../services/event-busService.js';
 
 export default {
     props: ['email'],
@@ -19,7 +19,7 @@ export default {
     },
     computed: {
         convertTimeStampToDate() {
-            return moment(this.email.sentAt).format('LT');
+            return moment(this.email.sentAt).format('LLL');
         },
         shorthandBodyPreview() {
             if (this.email.body.length > 20)

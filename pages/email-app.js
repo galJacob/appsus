@@ -1,7 +1,7 @@
 import emailsService from '../services/emailApp-service/emails.js';
 import emailList from '../cmps/mister-Email/email-list.js';
 import emailDetails from '../cmps/mister-Email/email-details.js';
-import busService from '../../services/event-bus.service.js';
+import busService from '../services/event-busService.js';
 import emailStatus from '../cmps/mister-Email/email-status.js';
 import emailCompose from '../cmps/mister-Email/email-compose.js';
 
@@ -35,10 +35,7 @@ export default {
         emailsService.query().then(emails => {
             this.emails = emails;
             this.filteredEmails = emails;
-            console.log( 'emails: ',this.emails);
-            console.log('filtered:',this.filteredEmails);
             this.selectedemail = emails[0];
-            // this.$emit('createdEmails');
             emailsService.countReadenEmails()
                 .then(readEmails => {
                     this.readEmails = readEmails;

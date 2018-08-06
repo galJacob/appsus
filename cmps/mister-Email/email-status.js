@@ -1,6 +1,5 @@
-import emailsService from '../../services/emailApp-service/emails.js';
-import busService from '../../services/event-bus.service.js';
-import emails from '../../services/emailApp-service/emails.js';
+
+import busService from '../../services/event-busService.js';
 
 export default {
     props: ['readEmails', 'emails','readEmailsCount'],

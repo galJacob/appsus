@@ -5,7 +5,8 @@ export default {
     template: `
         <section class="email-compose">
                 <div class="compose-modal">
-                    <h1>send a new E-mail</h1>
+                    <h1 ref="h1">send a new E-mail</h1>
+                    <!-- <span class="dots" ref="span">a </span> -->
                         <form @submit="sendEmail" >
                             <div>
                             <strong>subject:</strong>
@@ -34,19 +35,31 @@ export default {
     },
     created() {
         if (window.innerWidth < 500) {
-            console.log(window.innerWidth);   
         }
     },
     computed: {
     },
     methods: {
         sendEmail() {
-            this.newEmail.sendAt = Math.floor(Date.now() / 1000);
-            console.log(Math.floor(Date.now() / 1000));
-            this.$emit('emailSent', this.newEmail);
+            let countDots = 0;
+            this.$refs.h1.innerHTML = 'please wait';
+            let interval = setInterval(() => {
+                this.$refs.h1.innerHTML += '.';
+                if (countDots === 3)
+                    this.$refs.h1.innerHTML = 'please wait';
+                if (countDots === 6) {
+                    this.$refs.h1.innerHTML = 'succuss! email sent';
+                    clearInterval(interval)
+                }
+                countDots++;
+            }, 1000);
+            setTimeout(() => {
+                this.newEmail.sendAt = Math.floor(Date.now() / 1000);
+                this.$emit('emailSent', this.newEmail);
+                this.$emit('closeCompose');
+                this.newEmail = emailsService.emptyNewEmail();
+            }, 8000);
 
-            this.$emit('closeCompose');
-            this.newEmail = emailsService.emptyNewEmail();
         }
     },
 }

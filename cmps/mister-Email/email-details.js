@@ -1,5 +1,5 @@
 import emailsService from '../../services/emailApp-service/emails.js';
-import busService from '../../services/event-bus.service.js';
+import busService from '../../services/event-busService.js';
 export default {
     props: ['selectedemail'],
     template: `

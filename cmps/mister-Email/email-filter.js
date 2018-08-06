@@ -1,9 +1,9 @@
-import busService from '../../services/event-bus.service.js';
+import busService from '../../services/event-busService.js';
 export default {
     template: `
         <section class="email-filter" @keyup.enter="setBusService">
             <div class="search-input-container">    
-                <input type="text" placeholder="search..." v-model="filter.txt" />
+                <input type="text" placeholder="search..." @input="setBusService" v-model="filter.txt" />
                 <i @click="setBusService" class="fas fa-search "></i>
             </div>  
             <div class="check-box-select-container">
@@ -33,7 +33,6 @@ export default {
     },
     methods: {
         setBusService() {
-            console.log(this.filter);
             busService.$emit('gotFilter', this.filter);
         }
     },
