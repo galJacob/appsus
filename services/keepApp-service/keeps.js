@@ -36,7 +36,10 @@ function GetDefaulNotes() {
                 title: "stuff todo",
                 imgUrl: null,
                 text: null,
-                todos: ['do something', 'do something', 'do something', 'go to work'],
+                todos: [{isMarked:false, todo:'do something'},
+                        {isMarked:false, todo:'do something'},
+                        {isMarked:false, todo:'do something'},
+                        {isMarked:false, todo:'go to work'}],
                 pinColor:"black",
                 backGround:'#037171',
             }
@@ -60,9 +63,12 @@ function GetDefaulNotes() {
                 title: "stuff todo",
                 imgUrl: null,
                 text: null,
-                todos: ['by stuff', 'do homework', 'walk the dog'],
+                todos: [{isMarked:false, todo:'by stuff'},
+                        {isMarked:false, todo:'do homework'},
+                        {isMarked:false, todo:'walk the dog'}],
                 pinColor:"black",
                 backGround:'#037171',
+                marked:false,
             }
         }
     ];
@@ -90,8 +96,6 @@ function saveChanges(changedNote) {
 
 function addNewNote(note) {
     notes.push(note);
-    console.log('from service add',notes);
-    
     utils.saveToStorage(NOTES, notes);
 }
 
@@ -116,20 +120,13 @@ function notePreferences(noteId) {
     
     if (pointedNote[0].data.pinColor === 'black') {
         tempNotes.unshift(pointedNote[0])
-        
-        // tempNotes = pointedNote.concat(tempNotes); 
         tempNotes[0].data.pinColor = 'red';
     } else {
-        console.log('else from service');
-        
-        // tempNotes = tempNotes.concat(pointedNote);
         tempNotes.push(pointedNote[0]);
         tempNotes[tempNotes.length - 1].data.pinColor = 'black';
     }    
     utils.saveToStorage(NOTES, tempNotes);
     notes = tempNotes;
-    console.log('from service',tempNotes);
-    
     return Promise.resolve(tempNotes)
 }
 
@@ -140,15 +137,14 @@ function filterNotes(textSearch) {
     (checkInTodos(note.data.todos, textSearch)) ||
     note.data.text && checkText(note.data.text, textSearch);
     })
-    console.log(notes);
     return filteredNotes;
 }
 
 function checkInTodos(todos, textSearch) {
-    var filteredTodos = todos.filter(todo=>{
-        if (todo) {
-            todo = todo.toLowerCase()
-            return todo.includes(textSearch);
+    var filteredTodos = todos.filter(todoItem=>{
+        if (todoItem.todo) {
+            todoItem.todo = todoItem.todo.toLowerCase()
+            return todoItem.todo.includes(textSearch);
         } 
     })
     return filteredTodos.length;

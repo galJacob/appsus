@@ -28,8 +28,10 @@ export default {
             </div>
 
             <div v-if = "note.todos.length">
-            <label><b>Todos</b></label>
-            <div v-for = "(todo,idx) in note.todos" ref="todos" contenteditable="true">{{todo}}</div>
+            <b>Todos</b>
+            <div v-for = "(listItem,idx) in note.todos" ref="todos"
+            v-bind:class="{ line: note.todos[idx].isMarked }" contenteditable="true"  @keyup="saveTodo(idx)">
+            <input  type="checkbox" v-model = 'note.todos[idx].isMarked'/>{{listItem.todo}}</div>
             </div>  
             <button class = "modalBtn" @click = "saveNoteChanges()">save changes</button>
             
@@ -45,7 +47,7 @@ export default {
         return {
             noteToUpdate: this.note,
             text: this.note.text,
-            todos: this.note.todos,
+            tempTodos: this.note.todos,
         }
     },
     created() {
@@ -55,23 +57,25 @@ export default {
 
     methods: {
         closeModal() {
-            this.$emit("close");
+            this.$emit("closeUpdateModal");
 
         },
 
         saveNoteChanges() {
             if (this.note.title) this.noteToUpdate.title = this.$refs.noteTitle.innerText;
             if (this.note.text) this.noteToUpdate.text = this.$refs.noteText.innerText;
-            if (this.note.todos.length) this.noteToUpdate.todos = this.$refs.todos.innerText;
-            console.log(this.todos);
-            
+            this.noteToUpdate.todos = this.tempTodos;            
             this.noteToUpdate.pinColor = this.note.pinColor;
-            keeps.saveChanges(this.noteToUpdate);
+            this.$emit("saveNewNote", this.noteToUpdate);
             this.closeModal();
         },
 
         onloadNewImg() {
             this.noteToUpdate.imgUrl = this.$refs.noteImgSrc.innerText;
+        },
+
+        saveTodo(idx, value) {
+            this.tempTodos[idx] = this.$refs.todos[idx].innerText;
         }
 
         

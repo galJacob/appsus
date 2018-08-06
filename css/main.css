@@ -413,7 +413,7 @@ h2 span{
 
 /*notes card*/
 .card {
-    max-width: 50%;
+    max-width: 40%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     padding: 15px;
@@ -479,6 +479,9 @@ h2 span{
     cursor: pointer;
 }
 
+#id01 {
+    border-radius: 5px;
+}
 .notes-menu{
     justify-content: center;
     align-items: center;
@@ -489,6 +492,10 @@ h2 span{
     padding: 0px;
     font-family: 'Cuprum', sans-serif;
     margin-left: 10px;
+}
+
+.line{
+    text-decoration: line-through;
 }
 
 .notes-list {

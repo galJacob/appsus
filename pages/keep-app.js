@@ -15,10 +15,10 @@ export default {
             </div>
             <div class = "notes-list flex wrap">
                 <component v-for="(note, idx) in notes" :is="note.noteType" :key="idx"
-                :data="note.data" v-on:openUpdateModal = "updateNote" v-on:deleteNote ="removeNote"
-                v-on:notePined = "swapNotes"></component>  
+                :data="note.data" v-on:openUpdateModal = "toggleUpdateModal" v-on:deleteNote ="removeNote"
+                v-on:notePined = "swapNotes" v-on:changeMark='saveUpdatedNote'></component>  
             </div>
-            <update-note v-if = 'openModal' :note="modalNote" v-on:close = "updateNote">
+            <update-note v-if = 'openModal' :note="modalNote" v-on:closeUpdateModal = "toggleUpdateModal" v-on:saveNewNote="saveUpdatedNote">
             </update-note>
             <add-note v-if='addModal' v-on:closeAdd= "toggleAddModal" v-on:addNote = 'addNewNote'>
             </add-note>                 
@@ -44,7 +44,7 @@ export default {
     },
     
     methods: {
-        updateNote(note) {
+        toggleUpdateModal(note) {
             this.modalNote = (this.modalNote) ? null : note;
             this.openModal = (this.openModal) ? false : true;
         },
@@ -83,7 +83,14 @@ export default {
         addNewNote(newNote) {
             keeps.addNewNote(newNote);    
             this.loadNotes();        
-        }    
+        },
+        
+        saveUpdatedNote(saveUpdatedNote) {
+            keeps.saveChanges(saveUpdatedNote);
+            this.loadNotes();
+        },
+
+        
     },
         
     

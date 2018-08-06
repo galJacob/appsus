@@ -13,7 +13,9 @@ export default {
                 </div>    
                 <div class="content-card-container">
                     <h4><b>{{data.title}}</b></h4> 
-                    <li class= 'clean-list' v-for = '(todo,idx) in data.todos'>{{todo}} <hr></hz></hl></hz></li> 
+                    <div  v-for = "(listItem,idx) in data.todos"
+                    v-bind:class="{ line: data.todos[idx].isMarked }">
+                    <input  type="checkbox" @click.stop='toggleMark(idx)' v-model="data.todos[idx].isMarked"/>{{listItem.todo}}</div>
                 </div>
             </div>    
                 
@@ -21,6 +23,10 @@ export default {
     
     `,
 
+    created() {
+        console.log(this.data.todos);
+        
+    },
     data() {
         return {
             color:this.data.backGround,
@@ -30,6 +36,11 @@ export default {
     methods: {
         pinNote() {
             this.$emit("notePined", this.data.id);
+        },
+
+        toggleMark(idx){
+            this.data.todos[idx].isMarked = (this.data.todos[idx].isMarked)? false: true;
+            this.$emit("changeMark", this.data);
         }
     },
 

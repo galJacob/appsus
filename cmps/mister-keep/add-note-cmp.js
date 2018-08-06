@@ -21,7 +21,7 @@ export default {
             <label ><b>Todos</b></label>
                 <button @click="addTodo">+</button>
                 <input  type="text" v-model = "note.data.text" name="text">
-                <p v-for="(n,idx) in range">{{note.data.todos[idx]}}</p>
+                <p v-for="(n,idx) in range">{{note.data.todos[idx].todo}}</p>
             </div>
             <div v-if="textNote">
                 <label ><b>Text</b></label>
@@ -99,19 +99,17 @@ export default {
         },
 
         createNewTodo(todo) {
-            this.note.data.todos.push(todo);
+            this.note.data.todos.push({isMarked:false, todo:todo});
         },
 
         addTodo() {
-            this.note.data.todos.push(this.note.data.text);
+            this.note.data.todos.push({isMarked:false, todo:this.note.data.text});
             this.note.data.text = null;
             this.range++;
 
         },
 
         addNote() {
-            console.log(this.note);
-            
             this.$emit("addNote", this.note);
             this.closeAddModal();
         },
@@ -138,6 +136,7 @@ export default {
                     text: null,
                     todos: [],
                     pinColor:"black",
+                    backGround:'#037171',
                 }
             }
             console.log(this.note);
