@@ -24,6 +24,13 @@ body{
     flex-direction: column;
 }
 
+.justify-center {
+    justify-content: center;
+}
+.space-evenly {
+    justify-content: space-evenly;
+}
+
 .clean-list {
     list-style: none;
 }
@@ -402,6 +409,15 @@ h2 span{
     background-color: #333;
 }
 
+.nav-container {
+    width: 100%;
+    visibility: visible;
+}
+
+.hamburger {
+    display: none;
+} 
+
 .nav-bar li {
     float: left;
 }
@@ -652,6 +668,32 @@ span.psw {
         width: 100%;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .hamburger {
+        display: block;
+    }    
+    .nav-container {
+        flex-direction: column;
+        position: absolute;
+        top:59px;
+        background-color: #333;
+        opacity: 0.7;
+    }
+    .nav-bar li {
+        padding: 10px;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+      }
+      .nav-bar {
+        justify-content: flex-end;
+      }
+}    
 
 .addBtn.onloadInput {
     padding: 0;

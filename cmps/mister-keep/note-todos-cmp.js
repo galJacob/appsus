@@ -8,7 +8,7 @@ export default {
             <div class="card" @click = "$emit('openUpdateModal',  data)" v-bind:style="{ backgroundColor: color}">
                 <div class='top-card-menu flex'>
                     <button @click.stop = "$emit('deleteNote', data.id)">x</button>
-                    <input type="color" v-model = 'color'  name="favcolor" value="#ffffff" @click.stop="$emit('changeColor', this.value)">
+                    <input type="color" v-model = 'color'  name="favcolor" value="#ffffff" @click.stop="" @change = "saveColor">
                     <img :src ="'img/notes-img/s-'+data.pinColor+'.png'" @click.stop = "pinNote">
                 </div>    
                 <div class="content-card-container">
@@ -41,6 +41,10 @@ export default {
         toggleMark(idx){
             this.data.todos[idx].isMarked = (this.data.todos[idx].isMarked)? false: true;
             this.$emit("changeMark", this.data);
+        },
+        saveColor() {
+            this.data.backGround = this.color;
+            this.$emit('changeColor', this.data);
         }
     },
 

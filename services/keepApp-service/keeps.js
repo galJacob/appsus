@@ -78,10 +78,6 @@ function getNotes() {
     var storageNotes = utils.loadFromStorage(NOTES);
     notes = (storageNotes) ? storageNotes : GetDefaulNotes();
     return Promise.resolve(notes)
-        .then(notes => {
-            return notes;
-        })
-
 }
 
 

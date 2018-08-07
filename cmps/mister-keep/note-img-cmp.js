@@ -7,7 +7,7 @@ export default {
             <div class="card" @click = "$emit('openUpdateModal',  data)"  v-bind:style="{ backgroundColor: color}">
                 <div class='top-card-menu flex'>
                     <button @click.stop = "$emit('deleteNote', data.id)">x</button>
-                    <input type="color" v-model = 'color'  name="favcolor" value="#ffffff" @click.stop="$emit('changeColor', this.value)">
+                    <input type="color" v-model = 'color'  name="favcolor" value="#ffffff" @click.stop=""  @change = "saveColor">
                     <img :src ="'img/notes-img/s-'+data.pinColor+'.png'" @click.stop = "pinNote">
                 </div>    
                 <img class = "note-img" :src="data.imgUrl" alt="note-image">
@@ -31,6 +31,10 @@ export default {
     methods: {
         pinNote() {
             this.$emit("notePined", this.data.id);
+        },
+        saveColor() {
+            this.data.backGround = this.color;
+            this.$emit('changeColor', this.data);
         }
     },
 

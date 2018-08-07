@@ -3,35 +3,35 @@ import keeps from '../../services/keepApp-service/keeps.js'
 export default {
     props: ['note'],
     template: `
-        <section>
+        <section v-if="noteToUpdate">
         <div id="id01" class="modal">
   
         <div class="modal-content animate">
           <div class="img-container">
-            <span  @click = "closeModal()" class="close" title="Close Modal">&times;</span>
+            <span  @click = "closeModal()"  class="close" title="Close Modal">&times;</span>
             <img v-if = 'noteToUpdate.imgUrl' :src="noteToUpdate.imgUrl" alt="image" />
           </div>
       
           <div class="container">
             <label><b>Title</b></label>
-            <div ref="noteTitle" contenteditable="true" >{{note.title}}</div>
+            <div ref="noteTitle"  contenteditable="true">{{noteToUpdate.title}}</div>
 
-            <div v-if = 'note.imgUrl' >
+            <div v-if = 'noteToUpdate.imgUrl' >
             <label><b>Image Source</b></label>
-            <div class = "update-url" ref="noteImgSrc" contenteditable="true">{{note.imgUrl}}</div>
+            <div class = "update-url"  ref="noteImgSrc" contenteditable="true">{{noteToUpdate.imgUrl}}</div>
                 <button class = 'upload-btn' @click = 'onloadNewImg' >Upload!</button>
             </div>
 
-            <div v-if = "note.text">
+            <div v-if = "noteToUpdate.text">
             <label><b>Text</b></label>
-            <div ref="noteText" contenteditable="true">{{note.text}}</div>
+            <div ref="text" contenteditable="true">{{noteToUpdate.text}}</div>
             </div>
 
-            <div v-if = "note.todos.length">
+            <div v-if = "noteToUpdate.todos.length">
             <b>Todos</b>
             <div v-for = "(listItem,idx) in note.todos" ref="todos"
-            v-bind:class="{ line: note.todos[idx].isMarked }" contenteditable="true"  @keyup="saveTodo(idx)">
-            <input  type="checkbox" v-model = 'note.todos[idx].isMarked'/>{{listItem.todo}}</div>
+            v-bind:class="{ line: noteToUpdate.todos[idx].isMarked }" contenteditable="true"  @input="saveTodo(idx)">
+            <input  type="checkbox" v-model = 'noteToUpdate.todos[idx].isMarked'/>{{listItem.todo}}</div>
             </div>  
             <button class = "modalBtn" @click = "saveNoteChanges()">save changes</button>
             
@@ -45,27 +45,23 @@ export default {
 
     data() {
         return {
-            noteToUpdate: this.note,
-            text: this.note.text,
-            tempTodos: this.note.todos,
+            noteToUpdate: {},
+
         }
     },
     created() {
-        console.log(this.note);
-        
+        if (this.note) this.noteToUpdate = JSON.parse(JSON.stringify(this.note));
     },
 
     methods: {
         closeModal() {
             this.$emit("closeUpdateModal");
-
         },
 
         saveNoteChanges() {
-            if (this.note.title) this.noteToUpdate.title = this.$refs.noteTitle.innerText;
-            if (this.note.text) this.noteToUpdate.text = this.$refs.noteText.innerText;
-            this.noteToUpdate.todos = this.tempTodos;            
-            this.noteToUpdate.pinColor = this.note.pinColor;
+            console.log(this.noteToUpdate);
+            this.noteToUpdate.title = this.$refs.noteTitle.innerText;
+            if (this.noteToUpdate.text) this.noteToUpdate.text = this.$refs.text.innerText;
             this.$emit("saveNewNote", this.noteToUpdate);
             this.closeModal();
         },
@@ -73,13 +69,13 @@ export default {
         onloadNewImg() {
             this.noteToUpdate.imgUrl = this.$refs.noteImgSrc.innerText;
         },
-
         saveTodo(idx, value) {
-            this.tempTodos[idx] = this.$refs.todos[idx].innerText;
+            this.noteToUpdate.todos[idx].todo = this.$refs.todos[idx].innerText;
         }
 
-        
+
     },
+
     components: {
         keeps,
     }
